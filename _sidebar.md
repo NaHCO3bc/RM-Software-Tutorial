@@ -8,6 +8,7 @@
   
   * [系统安装](quick_start/installation.md)
   * [代码部署](quick_start/deploy.md)
+  * [控制组工作实用手册](quick_start/quick_start_in_control_group.md)
   
 * 开发指南
   * [配置IDE](dev_guide/ide_config.md)
@@ -21,4 +22,3 @@
   * [理论](digging_deeper/theory/theory_lover.md)
   
     
-  
