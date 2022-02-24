@@ -9,6 +9,9 @@
   * [系统安装](quick_start/installation.md)
   * [代码部署](quick_start/deploy.md)
   * [控制组工作实用手册](quick_start/quick_start_in_control_group.md)
+  * [手眼标定](quick_start/easy_handeye.md)
+  * [imu相机联合标定](quick_start/camera_imu_calibration.md)
+  * [控制组检查urdf规范](quick_start/the_method_of_check_urdf.md)
   
 * 开发指南
   * [配置IDE](dev_guide/ide_config.md)
