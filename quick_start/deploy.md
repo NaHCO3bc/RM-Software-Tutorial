@@ -34,7 +34,7 @@
 
 1. pc连接usbtoxxx.
 
-2. 查询usbImu和usbDbus物理地址
+2. 查询usbDbus和usbReferee物理地址
 
     ```bash
     ls /sys/class/tty/ttyUSB* -l
@@ -44,9 +44,9 @@
 
     ![](https://ftp.bmp.ovh/imgs/2020/11/7f51b4bda7bb8037.png)
 
-    其中，'3-2.3:1.0'为usbImu的物理地址
+    其中，'3-2.3:1.0'为usbDbus的物理地址
 
-3. 修改usbImu和usbDbus物理地址
+3. 修改usbDbus和usbReferee物理地址
 
     ```bash
     cd /home/chenzheng/RM-Software/rm_ws/src/rm_bringup/scripts/udev/
@@ -65,7 +65,7 @@
     ls /dev/ | grep usb
     ```
 
-    存在usbDbus和usbImu即映射成功
+    存在usbDbus和usbReferee即映射成功
 
     > [!Tip]
     >
