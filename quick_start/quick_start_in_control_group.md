@@ -2,22 +2,22 @@
 <big>作者：叶振羽 罗庭凯</big>
 <big>邮箱：1536117624@qq.com</big>
 
-# 一、nuc基本配置
+# 1 nuc基本配置
 
-## 1、安装Ubuntu服务器版 
+## 1.1 安装Ubuntu服务器版 
 
  插入装有ubuntu服务器版的u盘，进入u盘启动，正常安装即可。给/swap分配16g，/efi分配512m，剩下的硬盘空间全部挂载到/目录下。设备名看这台nuc给哪个机器人用，用户名dynamicx，密码dynamicx。安装完成后按照提示移除u盘，重启。
-## 2、安装ssh，并通过ssh用你的电脑操控nuc
+## 1.2 安装ssh，并通过ssh用你的电脑操控nuc
  1、将自己的电脑连接上wifi，然后用一根网线将nuc和你的电脑连接。这时你的电脑左上方会出现有线连接的图标。进入有线连接，点击设置，点击IPV4,设置“与其他计算机共享网络”（类似的意思）。这样nuc就能上网了。可用`ping baidu.com`来检查是否已联网。
  2、安装ssh服务器端
  `sudo apt install openssh-server`
  **如需要安装依赖，按提示安装**
  3、在nuc上使用`ip a`查看nuc的ip地址。在你的电脑上输入指令`ssh dynamicx@“nuc的ip地址”`，这样你就能在你的电脑上操控nuc了。
 
-## 3、换源
+## 1.3 换源
 **网上搜索国内的源，例如清华源，阿里源，换源。网上的清华源有的能用，有的是坏的，如果装清华源锅了就换一个。**
 
-## 4、安装easywifi
+## 1.4 安装easywifi
  1、在github上搜索easywifi,第一个就是。将源代码clone下来，注意要用http。
  2、安装easywifi依赖：`sudo apt-get install network-manager-config-connectivity-ubuntu`
  3、进入easywifi文件夹，输入`python3 easywifi`
@@ -25,29 +25,22 @@
 
  5、和nuc连上同一个wifi，继续用ssh操控nuc。
 
-## 5、安装ros
- `sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'`
- `sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654`
- `sudo apt-get update`
- `sudo apt-get install ros-noetic-ros-base`
- `echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc` 
- `source ~/.bashrc`
-**如果安装失败，建议换源。**
+## 1.5 安装ros
+安装ros请主要参考ros_wiki上的安装教程。请注意安装base而不是full-desktop。
 
-## 5.5、安装catkin tools
-```
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'
-```
+### 1.5.1 安装catkin tools
+catkin tools官方文档：https://catkin-tools.readthedocs.io/en/latest/
+如果你使用catkin build时需要你安装osrf-pycommon>0.1.1这个依赖，请输入以下指令：
+`sudo apt-get install python3-pip`
 
- `wget http://packages.ros.org/ros.key -O - | sudo apt-key add -`
- `sudo apt-get update`
- `sudo apt-get install python3-catkin-tools`
- 如果你使用catkin build时需要你安装osrf-pycommon>0.1.1这个依赖，请输入以下指令：
- `sudo apt-get install python3-pip`
+`pip3 install osrf-pycommon`
+### 1.5.2 rosdep
+rosdep update 失败的参考解决方法：https://gitee.com/ncnynl/rosdep/blob/master/README.md
 
- `pip3 install osrf-pycommon`
+亲测有效。
 
-## 6、把github上我们团队rm的代码拉下来，装依赖。
+
+## 1.6 把github上我们团队rm的代码拉下来，装依赖。
 
 **我们团队为rm_control和rm_controllers搭建了软件源，请根据[这个网站](https://rm-control-docs.netlify.app/quick_start/rm_source)给nuc添加软件源并把相应的软件包拉下来。**
 
@@ -59,9 +52,7 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main"
 
  大多数依赖都是ros软件包，名称大多为ros-noetic-××××。可以用`sudo apt-get install ros-noetic-****`来安装。
 
-有一个名为serial的依赖需要从github上下载源码，并按步骤安装。
-
-## 7、优化
+## 1.7 优化
  1、你会发现开机很慢，这是一个系统服务导致的，可以设置将其跳过。
 
  `$ sudo vim /etc/netplan/01-netcfg.yaml`
@@ -80,7 +71,7 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main"
 
  `sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target`
 
-## 8、换内核
+## 1.8 换内核
 
  1、使用搜索引擎搜索xanmod，通常搜索结果第一个就是，打开此网站。（https://xanmod.org）
 
@@ -98,9 +89,9 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main"
 
 
 
-## 二、关于Clion的远程传输配置
+# 2 关于Clion的远程传输配置
 
-+ #### 免密登陆设置
+## 2.1 免密登陆设置
 
   当我们远程连接NUC的时候，需要输入密码，但是这样的话可能会比较麻烦，因此最好我们配置免密登陆，可以省去很多麻烦
 
@@ -112,7 +103,7 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main"
 
   回车之后还需要输入一次密码，输入完之后就可以了，以后每次都可以免密登陆
 
-+ #### 配置CLion流程
+## 2.2 配置CLion流程
 
   首先在setting处的CMake一栏配置，在原有的debug下面点击添加符号，并命名为remote
 
@@ -186,7 +177,7 @@ Host处填写的是你需要远程连接的服务器的ip，用户名和密码�
 
 流程
 
-+ #### 远程传输流程
+## 2.3 远程传输流程
 
 在CLion中的工作空间中，点击src，选择你想要进行远程传输的功能包，鼠标右击，选择菜单栏中的deployment，如果需要从本地传输文件到远程主机则选择upload to “目标主机”，如果需要从目标主机中传输到本地，则选择download from “目标主机”
 
@@ -194,7 +185,7 @@ Host处填写的是你需要远程连接的服务器的ip，用户名和密码�
 
 
 
-## 三、can总线的连接
+# 3 can总线的连接
 
 ### 初始化can
 
