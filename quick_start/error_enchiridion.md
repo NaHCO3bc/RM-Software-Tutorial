@@ -2,9 +2,15 @@
 
 
 
+## Section 1 固定命名规则
 
+1、
 
-## Section 1  基本常识错误
+dynamic_reconfigure 的 server 固定命名为`reconf_server_`
+
+例如`dynamic_reconfigure::Server<rm_track::EKfConfig>* reconf_server_;`
+
+## Section 2  基本常识错误
 
  
 
@@ -37,7 +43,7 @@
 ​          **正确示范：**在按要求修改时，要注意更多的细节方面，不能随意的push，请务必仔细检查。
 
 
-## Section 2   代码规范错误
+## Section 3   代码规范错误
 
 
 
@@ -47,13 +53,10 @@
 
 
 
-
 ​       **正确示范**：注意相关命名规范，PID应该命名为Pid  commit的首字母应该大写！
-                其他的例如：（详情请查阅C++命名规范）
+​                其他的例如：（详情请查阅C++命名规范）
 
-  1.宏定义：较短的变量全部大写：MAX,MIN,NUM ; 否则，下划线命名法，例如：list_data
-
-  2.类名，结构体，枚举，联合体：全部大写，例如：PERSON，STU
+代码规范主要参考http://wiki.ros.org/StyleGuide
 
 
 
