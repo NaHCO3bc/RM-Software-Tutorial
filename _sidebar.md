@@ -13,6 +13,7 @@
   * [imu相机联合标定](quick_start/camera_imu_calibration.md)
   * [控制组检查urdf规范](quick_start/the_method_of_check_urdf.md)
   * [shooter部署文档](quick_start/deploy_of_shooter.md)
+  * [控制组编写urdf规范](qucik_start/the_method_of_write_urdf.md)
   
 * 开发指南
   * [配置IDE](dev_guide/ide_config.md)
