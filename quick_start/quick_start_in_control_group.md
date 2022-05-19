@@ -20,8 +20,8 @@
 ## 1.4 安装easywifi
  1、在github上搜索easywifi,第一个就是。将源代码clone下来，注意要用http。
  2、安装easywifi依赖：`sudo apt-get install network-manager-config-connectivity-ubuntu`
- 3、进入easywifi文件夹，输入`python3 easywifi`
- 4、成功运行easywifi，现在让nuc连上wifi吧。
+ 3、进入easywifi文件夹，输入`sudo python3 easywifi.py`
+ 4、成功运行easywifi，运行  *1*<!--Scan for networks-->  搜索wifi，然后运行  *5*<!--Setup new network-->  输入wifi名称和密码，让nuc连上wifi。
 
  5、和nuc连上同一个wifi，继续用ssh操控nuc。
 
@@ -34,15 +34,34 @@ catkin tools官方文档：https://catkin-tools.readthedocs.io/en/latest/
 `sudo apt-get install python3-pip`
 
 `pip3 install osrf-pycommon`
-### 1.5.2 rosdep
-rosdep update 失败的参考解决方法：https://gitee.com/ncnynl/rosdep/blob/master/README.md
 
-亲测有效。
+### 1.5.2 rosdep
+rosdep update 失败的参考解决方法：https://github.com/SparkChen927/rosdep
+
+`git clone https://gitclone.com/github.com/SparkChen927/rosdep.git`
+
+
 
 
 ## 1.6 把github上我们团队rm的代码拉下来，装依赖。
 
 **我们团队为rm_control和rm_controllers搭建了软件源，请根据[这个网站](https://rm-control-docs.netlify.app/quick_start/rm_source)给nuc添加软件源并把相应的软件包拉下来。**
+
+
+
+添加该软件源后，执行`sudo apt update` 可能会出现报错。
+
+解决方法：
+
+`sudo vim /etc/apt/sources.list`
+
+删除该内容:`deb https://rmsource.gdutelc.com/ubuntu/ focal main`
+
+终端执行 `sudo apt upgrade` 后重新添加软件源。
+
+[这个网站](https://rm-control-docs.netlify.app/quick_start/rm_source)中的`rm-control`多了个`s`
+
+
 
 <big>**重要！！不要把rm_gazebo拉到nuc上**</big>
 
@@ -73,13 +92,13 @@ rosdep update 失败的参考解决方法：https://gitee.com/ncnynl/rosdep/blob
 
 ## 1.8 换内核
 
- 1、使用搜索引擎搜索xanmod，通常搜索结果第一个就是，打开此网站。（https://xanmod.org）
+ 1、使用搜索引擎搜索xanmod，通常搜索结果第一个就是，打开[此网站](https://xanmod.org)。
 
  2、我们需要更换一个实时性更强的内核，这样的内核通常名字里会带有“rt”（realtime）。在这个网站往下拉会看到“Install via Terminal”(通过命令行安装)。根据提示安装自己想要的内核。
 
  3、使用指令`sudo dpkg --get-selections | grep linux-image `来查看你想要安装的内核是否安装成功。
 
- 4、重启，按F2进入BIOS模式。在boot->Boot Priority勾选Fast boot。Power选项里勾选Max Performance Enabled,Dynamic Power Technology设为最长的那个，Power->Secondary Power Settings将After Power Failure设为Power on。cooling选项里将Fan Control Mode设置为Fixed，Fixed Duty Cycle设为100。然后退出BIOS，正常启动。
+ 4、重启，按F2进入BIOS模式。在boot->Boot Priority勾选Fast boot。Power选项里勾选Max Performance Enabled,Dynamic Power Technology设为最长的那个，Power->Secondary Power Settings将After Power Failure设为Power on。cooling选项里将Fan Control Mode设置为Fixed，Fixed Duty Cycle设为100。***关闭安全启动***然后退出BIOS，正常启动。
 
  5、测试新内核的实时性和can总线传输速率
 
